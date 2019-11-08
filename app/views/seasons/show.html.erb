@@ -1,0 +1,37 @@
+<p id='notice'><%= notice%></p>
+<div class="season">
+  <p>
+    <strong>Name:</strong>
+    <%= @season.name %><br>
+    <strong>Location:</strong>
+    <%= @season.location %><br>
+    <strong>Start:</strong>
+    <%= @season.date_start %><br>
+    <strong>End:</strong>
+    <%= @season.date_end %><br>
+  </p>
+  <br>
+  <div class="season_tools">
+    <div class="seasons_buttons">
+      <%= link_to 'squads', season_squads_path(@season), class: 'btn btn-success' %>
+      <div></div>
+      <%= link_to 'event list', events_season_path, class: 'btn btn-success' %>
+      <div></div>
+      <%= link_to 'registration', new_season_voucher_path(@season), class: 'btn btn-success' %>
+      <div></div>
+      <%= link_to 'staff', staff_season_path, class: 'btn btn-success' %>
+      <div></div>
+      <% if @season.children.include?(current_user) %>
+        <%= link_to 'create wish', new_user_wish_path(current_user, season_id: @season.id), class: 'btn btn-success' %>
+      <% end %>
+      <div></div>
+      <%= link_to 'back', seasons_path, class: 'btn btn-secondary' %>
+    </div>
+    <% if @season.chat_opened? && user_signed_in? && @season.adults.include?(current_user)%>
+      <div class="chat_block">
+        <%= render "admin/comments/index" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+

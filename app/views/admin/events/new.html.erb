@@ -1,0 +1,33 @@
+<div class="my_forms">
+  <div>
+<h1><strong>New Event</strong></h1>
+
+<%= form_for @event, url: admin_events_path, method: :post, local: true do |f| %>
+  
+  <% if @event.errors.full_messages.any? %>
+    <div id="error_explanation">
+      <h3><%= pluralize(@event.errors.full_messages.count, "errors")%></h3>
+
+      <ul>
+        <% @event.errors.full_messages.each do |message|%>
+          <%= message %><br>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %><br>
+    <%= f.label :location %><br>
+    <%= f.text_field :location %><br>
+    <%= f.label :start_date %><br>
+    <%= f.date_field :date %><br>
+  </div>
+  <div class="action">
+    <%= f.submit 'Create', class: 'btn btn-primary' %>
+    <%= link_to 'back', admin_events_path, class: 'btn btn-danger' %>
+  </div>
+<% end %>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="my_forms">
+<h1>Create Wish</h1>
+<%= form_with url: user_wishes_path, scope: :wish, method: :post, local: true do |f| %>
+
+  <%= render 'layouts/errors' %>
+  
+  Friend's email <%= f.email_field :email %><br>
+  <%= hidden_field_tag :season_id, params[:season_id] %>
+  <br>
+  <%= f.submit 'Create', class: 'btn btn-success' %>
+  <%= link_to 'Back', season_path(params[:season_id]), class: 'btn btn-danger' %>
+<% end %>
+</div>

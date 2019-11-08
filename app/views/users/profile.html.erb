@@ -1,0 +1,51 @@
+<h1>Profile</h1>
+
+<div class="profile">
+
+<div class="info col-9 row">
+  <div class="ava col-3">
+    <%= image_tag("empty_avatar.jpg", :alt => "rss feed") %>
+  </div>
+  <div class="col-3 offset-2">
+    <p>Name: <%= @user.name %></p>
+    <p>Age:<%= @user.age %></p>
+    <p>Email: <%= @user.email %></p>
+    <div class="col-1 offset-1"><%= link_to 'Edit', edit_admin_user_path(@user), class: 'btn btn-warning' %></div>
+  </div>
+  
+</div>
+  
+
+<% if user_signed_in? && @user == current_user %>
+<% if !@user.staff_requests.blank? %>
+    <div class="requests">
+      <% @requests.each do |request|%>
+        <div>
+        <div>
+          You are invited in the season 
+          <%= link_to request.season.name, season_path(request.season) %>
+        </div>
+        <div class="buttons_request">
+          <%= link_to 'Accept', accept_admin_season_contract_path(user_id: @user.id, season_id: request.season.id), method: :post %>
+          <%= link_to 'Decline', admin_season_contract_path(user_id: @user.id, season_id: request.season.id), method: :delete %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  <% end %>
+  <% if @wishes.present? %>
+    <div class="requests">
+      <% @wishes.each do |wish|%>
+        <div>
+          <%= link_to wish.child.name, user_path(wish.child) %>
+          wants to get into the same squad with you <br>
+        <div class="buttons_request">
+          <%= link_to 'Accept', user_wish_path(wish_id: wish.id), method: :put %>
+          <%= link_to 'Decline', user_wish_path(wish_id: wish.id), method: :delete %>
+        </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <% end %>
+</div>

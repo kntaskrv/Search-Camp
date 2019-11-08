@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SearchCamp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <link href="https://fonts.googleapis.com/css?family=Livvic&display=swap" rel="stylesheet">
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.js"
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+      crossorigin="anonymous"></script>
+      <script src="script.js"></script>
+      <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/19f65d6b88.js"></script>
+    <script>
+      $(document).ready(function(){
+        $(document).on("click", ".clicker", function(){
+          let clicker = $(this)
+          clicker.parent().css('opacity', '0');
+          clicker.parent().css('bottom', '-100px');
+          setTimeout(function() {
+            clicker.parent().css('display','none');
+          }, 1000)
+        });
+      });
+    </script>
+  </head>
+
+  <body scroll="no">
+    <%= render "layouts/nav_bar"%>
+  
+    <div class="container">
+      <% if notice || alert %>
+      <div class="notif">
+        <i class="fas fa-times clicker"></i>
+        <%= notice %>
+        <%= alert %>
+      </div>
+      <% end %>
+
+      <%= yield %>
+
+    </div> 
+    
+  </body>
+</html>

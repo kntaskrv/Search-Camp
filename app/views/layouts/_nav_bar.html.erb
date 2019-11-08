@@ -1,0 +1,43 @@
+<div class="nav">
+      <h2 class="nav__main"><%= link_to 'Search Camp', welcome_index_path %></h2>
+      <% if user_signed_in? && User.roles[current_user.role] > 0 %>
+      <div class="nav__link">
+        <%= link_to 'user list', admin_users_path %><br>
+      </div>
+        <div class="nav__link">
+          <%= link_to 'season list', admin_seasons_path %><br>
+        </div>
+        <div class="nav__link">
+          <%= link_to 'event list', admin_events_path %><br>
+        </div>
+      <% else %>
+        <div class="nav__link">
+          <%= link_to 'season list', seasons_path %><br>
+        </div>
+        <div class="nav__link">
+          <%= link_to 'event list', events_path %><br>
+        </div>
+      <% end %>
+      <% if !user_signed_in? %>
+        <div class="nav__link">
+          <%= link_to 'registration', new_user_registration_path %><br>
+        </div>
+      <% end %>
+      <% if user_signed_in? %>
+        <div class="dropdown">
+          <div class="profile_link">
+            <%= link_to current_user.email, profile_user_path(current_user) %>
+          </div>
+          <button class="btn dropdown-toogle btn-orange" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img class="avatar" src="<%= gravatar_url(current_user) %>">
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+          </div>
+        </div>
+      <% else %>
+        <div class="nav__link">
+          <%= link_to 'Login', new_user_session_path %>
+        </div>
+      <% end %>
+</div>

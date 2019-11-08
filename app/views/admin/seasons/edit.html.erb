@@ -1,0 +1,32 @@
+<div class="my_forms">
+<h1><strong>Edit Season</strong></h1>
+
+<%= form_with scope: 'season', url: admin_season_path, method: :put, local: true do |f| %>
+  <% if @season.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@season.errors.count, "erros")%></h2>
+
+        <ul>
+          <% @season.errors.full_messages.each do |message|%>
+          <%= message %><br>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %><br>
+    <%= f.label :location %><br>
+    <%= f.text_field :location %><br>
+    <%= f.label :start_date %><br>
+    <%= f.text_field :date_start %><br>
+    <%= f.label :end_date %><br>
+    <%= f.text_field :date_end %><br>
+  </div>
+  <div class="action">
+    <%= f.submit 'Edit', class: 'btn btn-warning' %>
+    <%= link_to 'back', :back, class: 'btn btn-danger' %>
+  </div>
+<% end %>
+
+</div>

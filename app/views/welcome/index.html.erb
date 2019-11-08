@@ -1,0 +1,39 @@
+<!-- <div class="nav">
+  <h2>Search Camp</h2>
+  <div class="nav__link">
+    <%= link_to 'user list', admin_users_path %><br>
+  </div>
+    
+
+  <% if user_signed_in? && current_user.admin? %>
+  <div class="nav__link">
+    <%= link_to 'season list', admin_seasons_path %><br>
+  </div>
+  <div class="nav__link">
+    <%= link_to 'event list', admin_events_path %><br>
+  </div>
+  <% else %>
+  <div class="nav__link">
+    <%= link_to 'season list', seasons_path %><br>
+  </div>
+  <div class="nav__link">
+    <%= link_to 'event list', events_path %><br>
+  </div>
+  <% end %>
+
+
+  <div class="nav__link">
+  <%= link_to 'registration', new_user_registration_path %><br>
+</div>
+  <% if user_signed_in? %>
+    <div class="nav__link">
+    <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+  </div>
+  <% else %>
+    <div class="nav__link">
+    <%= link_to 'Login', new_user_session_path %>
+  </div>
+  </div>
+</div>
+
+<% end %> -->

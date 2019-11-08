@@ -1,0 +1,41 @@
+<h1><strong>ADULT LIST</strong></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>email</th>
+      <th>name</th>
+      <th>age</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+<table class="table table-sm table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col">Name</th>
+      <th scope="col">Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.name %></td>
+        <td><%= user.age %></td>
+        <td><%= link_to 'Show', profile_user_path(user), class: 'btn btn-sm btn-success' %></td>
+        <% if user.staff_requests.find_by(season_id: params[:id]).blank? %>
+          <% unless @season.adults.include?(user) %>
+            <td><%= link_to 'Invite', admin_season_contracts_path(season_id: params[:id], user_id: user.id), method: :post, class: 'btn btn-sm btn-warning' %></td>
+          <% end %>
+        <% else %>
+          <td><%= link_to 'Refuse', admin_season_contract_path(season_id: params[:id], user_id: user.id), method: :delete, class: 'btn btn-sm btn-danger' %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back', admin_season_contracts_path(params[:id]), class: 'btn btn-secondary' %>
+

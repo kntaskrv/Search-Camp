@@ -1,0 +1,9 @@
+<h2>Squad error</h2>
+
+<% @groups.each do |group|%>
+  <% group.each do |child| %>
+    <%= child.name %>,
+  <% end %>
+<% end %>
+
+<p>These groups of children could not be added to <%= @season.name %><p>

@@ -1,0 +1,30 @@
+<div class="my_forms">
+<h1><strong>New Voucher</strong></h1>
+
+<%= form_for @voucher, :url => url_for(:controller => 'vouchers', :action => 'create') do |f| %>
+  <% if @voucher.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@voucher.errors.count, "errors")%></h2>
+
+        <ul>
+          <% @voucher.errors.full_messages.each do |message|%>
+            <%= message %>
+          <% end %>
+        </ul>
+  <% end %>
+  <div class="field">
+    <div>Name: <%= current_user.name %></div>
+    <div>Email: <%= current_user.email %></div>
+    <div>Age: <%= current_user.age %></div>
+    <%= f.label :class %>
+    <%= f.select(:class_num, options_for_select([['1', 1], ['2', 2], ['3', 3],
+    ['4', 4], ['5', 5], ['6', 6], ['7', 7], ['8', 8], ['9', 9], ['10', 10], ['11', 11]])) %>
+    <%= f.hidden_field :user_id, value: current_user.id %><br>
+    <%= f.hidden_field :season_id, value: params[:season_id] %>
+  </div>
+  <div class="action">
+    <%= f.submit 'Create', class: 'btn btn-success' %>
+    <%= link_to 'back', season_path(@season), class: 'btn btn-danger' %>
+  </div>
+<% end %>
+</div>

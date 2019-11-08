@@ -1,0 +1,18 @@
+.photos {
+  padding: 10px;
+  background-color: lightgrey;
+}
+
+.photo_container{
+  /*border: 1px solid black;*/
+  padding: 5px;
+  display: flex;
+  height: 400px;
+  overflow: auto;
+}
+
+.photo_container img{
+  margin-left: 5px;
+  width: 30%;
+  border: 1px solid black;
+}

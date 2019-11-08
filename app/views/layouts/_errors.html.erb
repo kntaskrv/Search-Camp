@@ -1,0 +1,13 @@
+<% if @result %>
+<% if @result.errors.messages.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@result.errors.messages.count, "erros")%></h2>
+
+    <ul>
+      <% @result.errors.full_messages.each do |message|%>
+        <%= message %><br>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<% end %>

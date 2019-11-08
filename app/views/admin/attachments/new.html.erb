@@ -1,0 +1,10 @@
+<%= form_with url: admin_season_attachments_path, method: :post, local: true do |f| %>
+  <div>
+    <%= f.hidden_field :season_id, value: params[:season_id] %>
+  </div>
+  <div>
+    <%= f.file_field :image, multiple: true, name: 'images[]' %>
+  </div>
+ 
+  <%= f.submit 'save' %>
+<% end %>

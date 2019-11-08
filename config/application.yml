@@ -1,0 +1,12 @@
+defaults: &defaults
+  squad:
+    squad_capacity: 10
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

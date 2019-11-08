@@ -1,0 +1,25 @@
+<h1><strong>STAFF</strong></h1>
+
+<table class="table table-sm table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col">Name</th>
+      <th scope="col">Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.name %></td>
+        <td><%= user.age %></td>
+        <td><%= link_to 'Show', profile_user_path(user), class: 'btn btn-sm btn-success' %></td>
+        <td><%= link_to 'delete', delete_employee_admin_season_contract_path(id: params[:season_id], user_id: user.id), method: :delete, class: 'btn btn-sm btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Add', adult_list_admin_season_path(id: params[:season_id]), class: 'btn btn-primary' %>
+<%= link_to 'Back', admin_season_path(params[:season_id]), class: 'btn btn-secondary' %>

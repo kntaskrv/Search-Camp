@@ -1,0 +1,26 @@
+<div class="my_forms">
+<h1><strong>Edit User</strong></h1>
+<%= form_for :user, url: admin_user_path(@user), method: :put do |f| %>
+  
+  <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "erros")%></h2>
+
+        <ul>
+          <% @user.errors.full_messages.each do |message|%>
+          <%= message %>
+          <% end %>
+        </ul>
+  <% end %>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %><br>
+    <%= f.label :birthday %><br>
+    <%= f.date_field :birthday %>
+  </div>
+  <div class="action">
+    <%= f.submit 'Edit', class: 'btn btn-warning' %>
+    <%= link_to 'back', :back, class: 'btn btn-danger' %>    
+  </div>
+<% end %>
+</div>

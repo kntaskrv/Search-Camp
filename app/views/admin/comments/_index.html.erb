@@ -1,0 +1,18 @@
+<h1>Chat</h1>
+<div class="chat_messages">
+  <% @season.comments.each do |comment| %>
+    <div class="message">
+      <div class="author"><%= comment.user.name %></div>
+      <div class="text"><%= comment.message %></div>
+    </div>
+  <% end %>
+</div>
+
+<div class="comment">
+  <%= form_with model: Comment.new, url: admin_season_comments_path(season_id: params[:id]), method: :post, local: true do |f| %>
+    <%= f.text_area :message %>
+    <%= f.hidden_field :season_id, value: @season.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.submit 'send', class: 'btn btn-sm btn-success' %>
+  <% end %>
+</div>

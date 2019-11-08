@@ -1,0 +1,42 @@
+<h1>Voucher List</h1>
+
+<table class="table table-sm table-dark">
+  <thead>
+    <tr>
+      <th scope="col">name</th>
+      <th scope="col">email</th>
+      <th scope="col">class</th>
+      <!-- <th scope="col">accepted</th> -->
+    </tr>
+  </thead>
+  <tbody>
+    <% @vouchers.each do | voucher | %>
+      <tr>
+        <td><%= voucher.child.name %></td>
+        <td><%= voucher.child.email %></td>
+        <td><%= voucher.class_num %></td>
+        <!-- <td><%= voucher.accepted %></td> -->
+        <% if !voucher.accepted? %>
+          <!-- <td><%= link_to 'accept', admin_season_voucher_path(id: voucher.id, flag: true), method: :patch, class: 'btn btn-sm btn-success' %></td> -->
+        <% end %>
+        <% if voucher.accepted? %>
+          <!-- <td><%= link_to 'reject', admin_season_voucher_path(id: voucher.id, flag: false), method: :patch, class: 'btn btn-sm btn-danger' %></td> -->
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= form_with url: import_from_file_admin_season_vouchers_path, method: :post, local: true do |f| %>
+  <div class="input-group">
+  <div class="custom-file">
+    <%= f.file_field :file, class: 'custom-file-input' %>
+    <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+  </div>
+  <div class="input-group-append">
+    <%= f.submit 'Import', class: 'btn btn-secondary' %>
+  </div>
+</div>
+<% end %>
+
+<%= link_to 'Back', admin_season_path(@season), class: 'btn btn-secondary' %>

@@ -1,0 +1,39 @@
+<p id='notice'><%= notice%></p>
+
+<div class="season">
+<p>
+  <strong>Name:</strong>
+  <%= @season.name %><br>
+  <strong>Location:</strong>
+  <%= @season.location %><br>
+  <strong>Start:</strong>
+  <%= @season.date_start %><br>
+  <strong>End:</strong>
+  <%= @season.date_end %><br>
+</p>
+
+<div class="season_tools">
+  <div class="seasons_buttons">
+    <% if @season.children.size > 0 %>
+      <div><%= link_to 'start season', start_season_admin_season_path, method: :put, class: 'btn btn-success' %></div>
+    <% end %>
+      <div><%= link_to 'squads', season_squads_path(@season), class: 'btn btn-success' %></div>
+    <div><%= link_to 'event list', events_admin_season_path(@season), class: 'btn btn-success' %></div>
+    <div><%= link_to 'voucher list', admin_season_vouchers_path(@season), class: 'btn btn-success' %></div>
+    <div><%= link_to 'staff', admin_season_contracts_path(@season), class: 'btn btn-success' %></div>
+    <div><%= link_to 'photos', admin_season_attachments_path(@season), class: 'btn btn-success' %></div>
+    <% if !@season.chat_opened? %>
+      <div><%= link_to 'open chat', open_chat_admin_season_path(@season), class: 'btn btn-success', method: :put %></div>
+    <% else %>
+      <div><%= link_to 'close chat', close_chat_admin_season_path(@season), class: 'btn btn-success', method: :put %></div>
+    <% end %>
+    <div><%= link_to 'edit', edit_admin_season_path(@season), class: 'btn btn-success' %></div>
+    <div><%= link_to 'back', admin_seasons_path, class: 'btn btn-secondary' %></div>
+  </div>
+  <% if @season.chat_opened? %>
+    <div class="chat_block">
+      <%= render "admin/comments/index" %>
+    </div>
+  <% end %>
+</div>
+</div>

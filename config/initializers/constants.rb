@@ -1,0 +1,1 @@
+SQUAD_CAPACITY = 20.freeze

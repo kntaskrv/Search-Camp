@@ -1,0 +1,7 @@
+<%= form_with url: import_from_file_admin_season_vouchers_path, method: :post, local: true do |f| %>
+  <div>
+    <%= f.file_field :file %>
+  </div>
+ 
+  <%= f.submit 'import' %>
+<% end %>

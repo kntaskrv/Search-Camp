@@ -1,0 +1,27 @@
+<h1><strong>SEASON LIST</strong></h1>
+
+<table class="table table-sm table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Location</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">End Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @seasons.each do |season| %>
+      <tr>
+        <td><%= season.name %></td>
+        <td><%= season.location %></td>
+        <td><%= season.date_start %></td>
+        <td><%= season.date_end %></td>
+        <td><%= link_to 'Show', admin_season_path(season), class: 'btn btn-sm btn-info' %></td>
+        <td><%= link_to 'Edit', edit_admin_season_path(season), class: 'btn btn-sm btn-warning' %></td>
+        <td><%= link_to 'Destroy', admin_season_path(season), method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-sm btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div><%= link_to 'New Season', new_admin_season_path, class: 'btn btn-primary' %></div>

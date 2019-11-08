@@ -1,0 +1,25 @@
+<h1>Voucher List</h1>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>season</th>
+      <th>class</th>
+      <th>accepted</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @vouchers.each do | voucher | %>
+      <tr>
+        <td><%= voucher.user_id %></td>
+        <td><%= voucher.season_id %></td>
+        <td><%= voucher.class_num %></td>
+        <td><%= voucher.accepted %></td>
+        <td><%= link_to 'accept', season_voucher_path(id: voucher.id), method: :patch %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

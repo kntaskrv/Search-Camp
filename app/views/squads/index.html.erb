@@ -1,0 +1,22 @@
+<h1>Squads</h1>
+<% @squads.each do |squad| %>
+<table class="table table-sm table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col">Name</th>
+      <th scope="col">Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% squad.children.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.name %></td>
+        <td><%= user.age %></td>
+        <td><%= link_to 'Show', profile_user_path(user), class: 'btn btn-sm btn-info' %></td>
+    <% end %> 
+      </tr>
+  </tbody>
+</table>
+<% end %>

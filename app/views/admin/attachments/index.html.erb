@@ -1,0 +1,11 @@
+<h1>Photos</h1>
+<div class="photos">
+  <div class="photo_container">
+    <% @attachments.each do |attacment| %>
+      <%= image_tag(attacment.image.url, alt: 'Image') %>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to 'Add photo', new_admin_season_attachment_path, class: 'btn btn-primary'%>
+<%= link_to 'Back', :back, class: 'btn btn-secondary'%>
